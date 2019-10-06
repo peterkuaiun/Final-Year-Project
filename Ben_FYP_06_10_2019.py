@@ -15,7 +15,7 @@ from PIL import Image
 #Input the image and the image convert RGB mode 
 img = Image.open("test_1.png").convert('RGB')
 
-#Copy the image
+#Copy to the result image
 b_img = img.copy()
 
 #load the image
@@ -34,5 +34,7 @@ print('DONE')
 
 #Save the image as bitmap
 b_img.save("test1.bmp")
+
+#Show the result
 img.show()
 b_img.show()
