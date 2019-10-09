@@ -17,6 +17,7 @@ FYP_09_10_2019
 
 import matplotlib.pyplot as plt
 import networkx as nx
+#import pyglet as
 
 
 fname = 'data_5' #The data file name
@@ -69,6 +70,8 @@ print ('Number of nodes:',G.number_of_nodes())
 plt.figure(3,figsize=(12,12))
 nx.draw(G,nx.get_node_attributes(G, 'pos'),node_size=30) #draw the network in the graphic G
 plt.savefig((fname+out_format), format="PNG") #Save the figure
+
+
 plt.show()
 
 print('DONE')
