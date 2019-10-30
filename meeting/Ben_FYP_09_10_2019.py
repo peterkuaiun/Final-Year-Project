@@ -17,10 +17,9 @@ FYP_09_10_2019
 
 import matplotlib.pyplot as plt
 import networkx as nx
-#import pyglet as
 
 
-fname = 'data_5' #The data file name
+fname = '5' #The data file name
 out_format = '.png' #The output image format
 data_list = list() #The data list
 
@@ -69,9 +68,19 @@ print ('Number of edges:',G.number_of_edges())
 print ('Number of nodes:',G.number_of_nodes())
 plt.figure(3,figsize=(12,12))
 nx.draw(G,nx.get_node_attributes(G, 'pos'),node_size=30) #draw the network in the graphic G
+
+x=[0 for i in range(999)]
+y=[0 for i in range(999)]
+
+for i in range(0, 999):
+    x[i] = all_nodes[i][0]
+    y[i] = all_nodes[i][1]
+
+plt.fill(x, y, "#E0F5B9")
+
 plt.savefig((fname+out_format), format="PNG") #Save the figure
-
-
 plt.show()
+
+
 
 print('DONE')
