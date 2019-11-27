@@ -1,42 +1,25 @@
 import numpy as np
 import pandas as pd
  
-"""
-    计算多边形的面积，包括非凸多边形的情况，
-    要求输入的顶点是按照逆时针顺序顺次排列的。
-    所要求解面积的多边形即为这些顶点一个一个地相连而成
-    E = {<v0, v1>, <v1, v2>, <v2, v3>,...,<vn-2, vn-1>, <vn-1, v0>}
-    @author: sdu_brz
-    @date: 2019/02/18
-"""
 def getData():
-    df = pd.read_csv("network_1", skiprows=1 ,sep=" ", header=None)
-    xy = df.iloc[0:10]
+    df = pd.read_csv("simple_graph", skiprows=1 ,sep=" ", header=None)
+    xy = df.iloc[0:100]
     xy = xy.drop(columns=[0])
     xy = xy.to_numpy()
     
-    
-    edge = df.loc[11:27]
+    edge = df.loc[101:501]
     edge = edge.drop(columns=[2])
     edge = edge.to_numpy()
     edge = edge.astype(np.int64)
+    
+    return edge, xy
 
 def coss_multi(v1, v2):
-    """
-    计算两个向量的叉乘
-    :param v1:
-    :param v2:
-    :return:
-    """
     return v1[0]*v2[1] - v1[1]*v2[0]
  
  
 def polygon_area(polygon):
-    """
-    计算多边形的面积，支持非凸情况
-    :param polygon: 多边形顶点，已经进行顺次逆时针排序
-    :return: 该多边形的面积
-    """
+
     n = len(polygon)
  
     if n < 3:
@@ -53,9 +36,7 @@ def polygon_area(polygon):
     return area
  
  
-def calCycleArea():
-    """测试"""
-    #for
+def calCycleArea():  
     graph, xy = getData()
     polygon1 = xy
     print(polygon_area(polygon1))
@@ -102,14 +83,34 @@ def isNew(path):
 def visited(node, path):
     return node in path
 
+def isInsidePolygon(pt, poly):
+    c = False
+    i = -1
+    l = len(poly)
+    j = l - 1
+    while i < l - 1:
+        i += 1
+        #print(i, poly[i], j, poly[j])
+        if ((poly[i][0] <= pt[0] and pt[0] < poly[j][0]) or (
+                poly[j][0] <= pt[0] and pt[0] < poly[i][0])):
+            if (pt[1] < (poly[j][1] - poly[i][1]) * (pt[0] - poly[i][0]) / (
+                poly[j][0] - poly[i][0]) + poly[i][1]):
+                c = not c
+        j = i
+    return c
+
+graph, xy = getData()
+cycles = []
+
 
 def main():
     global graph
     global cycles
     global xy
     xylist = {}
-    area_list = {}
-    
+    new_list = {}
+    i = 0
+        
     for edge in graph:
         for node in edge:
             findNewCycles([node])
@@ -117,13 +118,48 @@ def main():
     for index in range(len(cycles)):
         node = cycles[index]
         xylist[index] = xy[node]
+        '''
         area = polygon_area(xylist[index])
-        if area > 0:
-            area_list[index] = area
-       
-    print(area_list)
+        if area < 0:
+            del xylist[index]
+        '''
+    #print(xylist)
+
+    for index in range(len(xylist)):
+        for xy_index in range(len(xy)):
+            if isInsidePolygon(xy[xy_index], xylist[index]):
+                del xylist[index]
+                break
+        
+    print(len(xylist))
+
+    for item in xylist:
+        area = polygon_area(xylist[item])
+
+        if area < 0:
+            del xylist[index]
+    
+    for item in xylist:
+        new_list[i] = cycles[item]
+        i = i + 1
+    
+    print(new_list)
+        
+    #print(area_list)
+    #print(new_list)
+    #sort_list = sorted(area_list.items(), key=lambda item:item[1], reverse=True)
+    #print(sort_list)
+    
 
     
     
 main()
+
+
+
+
+
+
+
+
 
