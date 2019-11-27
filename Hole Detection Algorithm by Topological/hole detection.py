@@ -1,4 +1,22 @@
-graph = [[1, 2], [2, 3], [3, 1], [3, 4], [5, 4], [5, 6], [6, 7], [7, 5]]
+import pandas as pd
+import numpy as np
+
+
+def getData():
+    df = pd.read_table("network_1", skiprows=1 ,sep=" ", header=None)
+    xy = df.iloc[0:10]
+    xy = xy.drop(columns=[0])
+    xy = xy.to_numpy()
+    
+    
+    edge = df.loc[11:27]
+    edge = edge.drop(columns=[2])
+    edge = edge.to_numpy()
+    edge = edge.astype(np.int64)
+    return edge, xy
+
+#graph = [[1, 2], [2, 3], [3, 1], [3, 4], [5, 4], [5, 6], [6, 7], [7, 5]]
+graph, xy = getData()
 cycles = []
 
 def main():
