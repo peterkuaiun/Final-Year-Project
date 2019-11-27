@@ -21,8 +21,8 @@ img = cv2.imread('data_5.png')
 reults_img = img.copy()
 area_min = 1000
 area_mix = 50000
-c_max = []
-#h, w, _ = img.shape
+area_holes = []
+
 
 imgray = cv2.cvtColor(img.copy(),cv2.COLOR_BGR2GRAY)
 _,binary = cv2.threshold(imgray.copy(),254,255,3)
@@ -36,9 +36,11 @@ for i in range(len(contours)):
         c_min.append(contours[i])
         cv2.drawContours(reults_img,c_min,-1,(200,200,100),-1),cv2.drawContours(reults_img,c_min,-1,(200,127,0),1)
         cv2.drawContours(mask,c_min, -1, 255, -1)
+        area_holes.append(contours[i])
         continue
-    c_max.append(contours[i])
-print ("there are " + str(len(c_max)) + " contours in C_max")
+
+        
+area_holesprint ("there are " + str(len(area_holes)) + " contours in C_max")
 
 plt.figure(num='Hole Detection in Sensor Network Project',
            figsize=(50,25),

@@ -23,11 +23,15 @@ import cv2
 import matplotlib.pyplot as plt
 
 img = np.zeros((1080, 1080, 3), np.uint8) #create a gray img
+
+
+
 img_1 = cv2.imread('data_5.png')
+img_1 = cv2.flip(img_1, 0)
 reults_img = img.copy()
 area_min = 1000
 area_mix = 50000
-c_max = []
+area_holes = []
 print (img.shape)
 
 
@@ -68,11 +72,10 @@ for i in range (0,num_edges):
     cv2.line(img, all_nodes[all_edges[i][0]], all_nodes[all_edges[i][1]], (252, 121, 120), 3)  #Add the edge connection
     
 
-#np.transpose(img)
 reults_img = img.copy()
 area_min = 4000
 area_mix = 50000
-c_max = []
+area_holes = []
 #h, w, _ = img.shape
 
 imgray = cv2.cvtColor(img.copy(),cv2.COLOR_BGR2GRAY)
@@ -90,7 +93,7 @@ for i in range(len(contours)):
         cv2.drawContours(reults_img,c_min,-1,(246,235,123),-1)
         cv2.drawContours(reults_img,c_min,-1,(194,232,206),1)
         cv2.drawContours(mask,c_min, -1, 255, -1)
-        c_max.append(contours[i])
+        area_holes.append(contours[i])
         continue
         
 
@@ -100,7 +103,7 @@ for i in range (0,num_nodes):
     cv2.circle(img, all_nodes[i], 3,(94,183,183), -1, 0, 0)  #Add the node network
 
 
-print ("there are " + str(len(c_max)) + " contours in C_max")
+area_holesprint ("there are " + str(len(area_holes)) + " contours in C_max")
 
 plt.figure(num='Hole Detection in Sensor Network Project',
            figsize=(50,25),

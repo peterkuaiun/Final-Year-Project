@@ -25,7 +25,7 @@ _,binary = cv2.threshold(imgray,127,255,cv2.THRESH_BINARY_INV)
 contours, hierarchy = cv2.findContours(binary,cv2.CHAIN_APPROX_NONE,cv2.CHAIN_APPROX_NONE)
 area_min = 2000
 area_mix = 50000
-c_max = []
+area_holes = []
 h, w, _ = im.shape
 for i in range(len(contours)):
     cnt = contours[i]
@@ -36,8 +36,8 @@ for i in range(len(contours)):
         cv2.drawContours(reults_img,c_min,-1,(200,200,100),-1)
         cv2.drawContours(reults_img,c_min,-1,(200,127,0),1)
         continue
-    c_max.append(cnt)
-print ("there are " + str(len(c_max)) + " contours")
+    area_holes.append(cnt)
+print ("there are " + str(len(area_holes)) + " contours")
 
 plt.figure(num='Hole Detection in Sensor Network Project',
            figsize=(50,25),

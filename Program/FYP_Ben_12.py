@@ -1,5 +1,5 @@
 """
-Created on Mon Nov  11 12:48:43 2019
+Created on Thu Nov 28 00:29:48 2019
 
 @author:     Ng Kim Hou
 @Student ID: DB625369
@@ -7,7 +7,7 @@ Created on Mon Nov  11 12:48:43 2019
 
 
 2019_UM_FST_CPS_FYP_Hole Detection in Sensor Network Project
-FYP_11_11_2019
+FYP_28_11_2019
 @author:     Ng Kim Hou
 @Student ID: DB625369
 @Description: 
@@ -29,6 +29,7 @@ all_nodes = []
 all_edges = []
 all_holes = []
 d = -4.99 #The distance which between the nodes and hole
+area_min = 1000 #(You may not use it.)
 
 
 #Read data file
@@ -80,21 +81,20 @@ def Draw_Alledges(img,all_nodes,all_edges,color = (100,0,100),thickness=3,lineTy
 
 #Draw one hole
 def Draw_Hole(img,hole,color_1 = (100,205,40),color_2 = (0,0,255),area_min = 0,thickness=3,lineType=8,shift=0): 
+    a = cv2.contourArea(hole)
     h = []
     h.append(hole)
-    a = cv2.contourArea(hole)
-    if (a >= area_min):
+    if (int(a) >= area_min):
         cv2.drawContours(img,h,-1,color_1,-1)
         cv2.drawContours(img,h,-1,color_2,1,cv2.LINE_AA)
     return img
 
 
-#Draw all the holes
+#Draw all the holes ####Draw_AllHoles(results_img,all_holes[i],color_1 = (200,200,200),label = True)
 def Draw_AllHoles(img,all_holes,color_1 = (100,205,40),color_2 = (0,0,255),thickness=3,shift=0,label = False):
     for i in range (0,int(len(all_holes))):
-        hole = []
-        hole.append(all_holes[i])
-        Draw_Hole(img,hole,color_1,color_2,area_min,thickness,shift)
+        Draw_Hole(img,all_holes[i],color_1,color_2,area_min,thickness,shift)
+    
     if (label == True):
         for i in range (0,int(len(all_holes))):
                 Hole_label(img,all_holes[i],str(i+1))
@@ -152,7 +152,7 @@ def Find_holesIP(img):
 fname = 'data_1' #The data file name
 out_format = '.png' #The output image format
 #The size of Hole
-area_min = 1000000 #(You may not use it.)
+
 
 all_nodes,all_edges = Read_data(fname) #Read data
 #Add all the edges    
@@ -165,13 +165,17 @@ results_img = img.copy()
 Draw_Alledges(results_img,all_nodes,all_edges,(1,0,56),lineType= cv2.LINE_AA)
 Draw_Alledges(img,all_nodes,all_edges,(1,0,56),lineType= cv2.LINE_AA)
 
+'''
 for i in range(70,79):
     Draw_Hole(results_img,all_holes[i],color_1 = (200,200,200))
     Hole_label(results_img,all_holes[i],t = i)
     Draw_Hole(mask,all_holes[i],color_1 = (200,200,200))
     Hole_label(mask,all_holes[i],t = i)
-Find_AllHolesNodes(all_holes,all_nodes,sf = True)
- 
+
+'''
+Draw_AllHoles(results_img,all_holes,color_1 = (200,200,200),label = True)
+Draw_AllHoles(mask,all_holes,color_1 = (200,200,200),label = True) 
+#Find_AllHolesNodes(all_holes,all_nodes,sf = True)
 #Add all the nodes
 Draw_AllNodes(img,all_nodes,(200,100,255),lineType= cv2.LINE_AA);
 Draw_AllNodes(results_img,all_nodes,(200,100,255),lineType= cv2.LINE_AA);
