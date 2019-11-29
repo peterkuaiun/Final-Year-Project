@@ -2,12 +2,12 @@ import numpy as np
 import pandas as pd
  
 def getData():
-    df = pd.read_csv("simple_graph", skiprows=1 ,sep=" ", header=None)
-    xy = df.iloc[0:100]
+    df = pd.read_csv("data_1", skiprows=1 ,sep=" ", header=None)
+    xy = df.iloc[0:1000]
     xy = xy.drop(columns=[0])
     xy = xy.to_numpy()
     
-    edge = df.loc[101:501]
+    edge = df.loc[1001:3002]
     edge = edge.drop(columns=[2])
     edge = edge.to_numpy()
     edge = edge.astype(np.int64)
@@ -135,9 +135,11 @@ def main():
 
     for item in xylist:
         area = polygon_area(xylist[item])
+        print(area)
 
-        if area < 0:
+        if area < 0.0045810526315789475:
             del xylist[index]
+            
     
     for item in xylist:
         new_list[i] = cycles[item]
