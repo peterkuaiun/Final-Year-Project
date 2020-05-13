@@ -1,4 +1,5 @@
 import numpy as np
+<<<<<<< HEAD
 import cv2  
 import os
 
@@ -48,6 +49,20 @@ def Read_data(fname):
     print(min_y)
     for i in range (0,num_nodes):
         all_nodes.append((int((node_x[i] + min_x) * 2),int((node_y[i] + min_y) * 2))) #(X, Y) 
+=======
+import pandas as pd
+ 
+def getData():
+    df = pd.read_csv("data_1", skiprows=1 ,sep=" ", header=None)
+    xy = df.iloc[0:1000]
+    xy = xy.drop(columns=[0])
+    xy = xy.to_numpy()
+    
+    edge = df.loc[1001:3002]
+    edge = edge.drop(columns=[2])
+    edge = edge.to_numpy()
+    edge = edge.astype(np.int64)
+>>>>>>> 24166f0412a3f760b4793e17599c3debcc1f40d7
     
     num_edges = int (data_list.pop(0)) #Pop out the number of edges 
     #Get all the edge
@@ -57,7 +72,120 @@ def Read_data(fname):
         all_edges.append([int(edge[0]),int(edge[1])]) #(point 1, point 2)
     data_f.close
     
+<<<<<<< HEAD
     return all_nodes,all_edges
+=======
+
+
+def findNewCycles(path):
+    start_node = path[0]
+    next_node= None
+    sub = []
+
+    #visit each edge and each node of each edge
+    for edge in graph:
+        node1, node2 = edge
+        if start_node in edge:
+                if node1 == start_node:
+                    next_node = node2
+                else:
+                    next_node = node1
+                if not visited(next_node, path):
+                        # neighbor node not on path yet
+                        sub = [next_node]
+                        sub.extend(path)
+                        # explore extended path
+                        findNewCycles(sub);
+                elif len(path) > 2  and next_node == path[-1]:
+                        # cycle found
+                        p = rotate_to_smallest(path);
+                        inv = invert(p)
+                        if isNew(p) and isNew(inv):
+                            cycles.append(p)
+
+def invert(path):
+    return rotate_to_smallest(path[::-1])
+
+#  rotate cycle path such that it begins with the smallest node
+def rotate_to_smallest(path):
+    n = path.index(min(path))
+    return path[n:]+path[:n]
+
+def isNew(path):
+    return not path in cycles
+
+def visited(node, path):
+    return node in path
+
+def isInsidePolygon(pt, poly):
+    c = False
+    i = -1
+    l = len(poly)
+    j = l - 1
+    while i < l - 1:
+        i += 1
+        #print(i, poly[i], j, poly[j])
+        if ((poly[i][0] <= pt[0] and pt[0] < poly[j][0]) or (
+                poly[j][0] <= pt[0] and pt[0] < poly[i][0])):
+            if (pt[1] < (poly[j][1] - poly[i][1]) * (pt[0] - poly[i][0]) / (
+                poly[j][0] - poly[i][0]) + poly[i][1]):
+                c = not c
+        j = i
+    return c
+
+graph, xy = getData()
+cycles = []
+
+
+def main():
+    global graph
+    global cycles
+    global xy
+    xylist = {}
+    new_list = {}
+    i = 0
+        
+    for edge in graph:
+        for node in edge:
+            findNewCycles([node])
+            
+    for index in range(len(cycles)):
+        node = cycles[index]
+        xylist[index] = xy[node]
+        '''
+        area = polygon_area(xylist[index])
+        if area < 0:
+            del xylist[index]
+        '''
+    #print(xylist)
+
+    for index in range(len(xylist)):
+        for xy_index in range(len(xy)):
+            if isInsidePolygon(xy[xy_index], xylist[index]):
+                del xylist[index]
+                break
+        
+    print(len(xylist))
+
+    for item in xylist:
+        area = polygon_area(xylist[item])
+        print(area)
+
+        if area < 0.0045810526315789475:
+            del xylist[index]
+            
+    
+    for item in xylist:
+        new_list[i] = cycles[item]
+        i = i + 1
+    
+    print(new_list)
+        
+    #print(area_list)
+    #print(new_list)
+    #sort_list = sorted(area_list.items(), key=lambda item:item[1], reverse=True)
+    #print(sort_list)
+>>>>>>> 24166f0412a3f760b4793e17599c3debcc1f40d7
     
 
 def Hole_label(img,hole,t = "Hole"):

@@ -140,7 +140,7 @@ def Find_holesIP(img):
 
 #Main Program:
 out_format = '.png' #The output image format
-fname = os.path.abspath(r'D:\data_600s\result\Sparse\KK\n=1000d=6\graph\5157.txt') #The data file name
+fname = os.path.abspath(r'C:\Users\peter\Desktop\test.txt') #The data file name
 
 print(fname)
 #The size of Hole
@@ -174,7 +174,7 @@ Draw_AllNodes(mask_1,all_nodes,(94,0,183),lineType= cv2.LINE_AA)
 #holes_nodes  = Find_AllHolesNodes(all_holes,all_nodes)
 
 #Save result Image
-cv2.imwrite(r'D:\result data\test\\' + name + out_format, results_img)
+cv2.imwrite(r'C:\Users\peter\Desktop\result\\' + name + out_format, results_img)
 
 win_name = 'Hole Detection in Sensor Network Project'
 cv2.namedWindow(win_name,0)

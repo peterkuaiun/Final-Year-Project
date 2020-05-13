@@ -5,8 +5,10 @@ import sys
 
 #The node, edge and hole attributes
 
-fname = str(sys.argv[1])
-output_file_name = str(sys.argv[2])
+#fname = str(sys.argv[1])
+#output_file_name = str(sys.argv[2])
+fname = (r'D:\result_data\test\n=1000d=6')
+output_file_name = (r'D:\result_data\test\result_node_id.png')
 
 #Read data file
 def readData(fname):
