@@ -1,19 +1,14 @@
 import numpy as np
-import cv2  
-import time
-import sys
+import cv2 
+import sys 
+#import time
 
 #The node, edge and hole attributes
-'''
-dataset_file_name = str(sys.argv[1])
-fd_result_graph_txt = str(sys.argv[2])
-output_file_name = str(sys.argv[3])
 
-'''
-fname = (r'D:\data_600s\dataset\Uniform\n=1000d=6')
-#fd_result_graph_txt = (r'D:\data_600s\result\Uniform\FR\n=1000d=10\graph\1.txt')
-output_file_name = (r'D:\result_data\test\result\dataset_n=1000d=6_test.txt')
-
+#fname = str(sys.argv[1])
+#output_file_name = str(sys.argv[2])
+fname = (r'D:\result_data\test\1561.txt')
+output_file_name = (r'D:\result_data\test\1561.png')
 
 #Read data file
 def readData(fname):
@@ -140,10 +135,10 @@ def findHoleNodes(hole,all_nodes,img = " ",color = (0,200,0),thickness = 3,label
 def findAllHolesNodes(all_holes,all_nodes,img = " ",color = (0,200,200),thickness = 3,label = False,sf = False):
     holes_nodes = []  #The nodes of hole
     with open(output_file_name ,'w') as f:
+        f.write("%s\n"%num_nodes)
         for i in range (0,int(len(all_holes))):
             holes_nodes.append(findHoleNodes(all_holes[i],all_nodes,img,color,thickness,label))
-            f.write("%s"%(holes_nodes[i][:]))
-            f.write("\n")
+            f.write("%s\n"%(holes_nodes[i][:]))
     return holes_nodes,img
 
 #Find the hole in Image Processing
@@ -166,59 +161,14 @@ def findHolesIP(img):
         
     return img,all_holes
 
-def flat(l):
-    for k in l:
-        if not isinstance(k, (list, tuple)):
-            yield k
-        else:
-            yield from flat(k)
-
-def calAcc(orig_list, FD_list):
-    allnode = []
-    t_intersection = []
-    n_intersection = []
-    orig_list_outside = []
-    FD_list_outside = []
-    allnode = list(range(1,num_nodes+1))
-    #calulate TP and TN, find the duplicate node id will get TP
-    t_intersection = list(set(orig_list).intersection(set(FD_list)))
-    TP = len(t_intersection)
-    FP = len(FD_list) - TP
-    #find the difference node id between the node in the hole and all node, will get the the node id out of the hole
-    orig_list_outside = list(set(orig_list).symmetric_difference(set(allnode)))
-    FD_list_outside = list(set(FD_list).symmetric_difference(set(allnode)))
-    #calulate FP and FN, find the duplicate node id will get FP
-    n_intersection = list(set(orig_list_outside).intersection(set(FD_list_outside)))
-    TN = len(n_intersection)
-    FN = len(FD_list_outside) - TN
-    #confusion matrix accuracy formula
-    
-    acc = (TP + TN) / (TP + TN + FP + FN)
-    if TP + FN == 0:
-        recall = 0
-    else:
-        recall = TP / (TP + FN)
-    #print('TP:', TP,' TN:', TN, ' FP:', FP, ' FN:',FN)
-    with open(output_file_name,'w') as f:
-        #f.write("%s"%(holes_nodes[i][:]))
-        f.write('TP:'+ str(TP))
-        f.write(' FP:'+ str(FP))
-        f.write(' TN:'+ str(TN))
-        f.write(' FN:'+ str(FN))
-        f.write(' Acc:' + str(acc))
-        f.write(' Recall:' + str(recall))
-
-    return acc, recall
-
 #Main Program:
 input_list = []
 node_list = []
 
+#print(fname)
+#print(output_file_name)
 
-print(fname)
-print(output_file_name)
-
-time_start = time.time()
+#time_start = time.time()
 
 all_nodes = []
 all_edges = []
@@ -253,23 +203,10 @@ drawAllNodes(img,all_nodes,(200,100,255),lineType= cv2.LINE_AA);
 drawAllNodes(results_img,all_nodes,(200,100,255),lineType= cv2.LINE_AA);
 #Find_AllHolesNodes(all_holes,all_nodes,results_img,label = True)
 
-#find the node of node:
-mask_1 = np.zeros(img.shape, dtype='uint8')
-drawAllHoles(mask_1,all_holes,label = True)
-drawAlledges(mask_1,all_nodes,all_edges,(252, 121, 120),2,lineType = cv2.LINE_AA)
-drawAllNodes(mask_1,all_nodes,(94,0,183),lineType= cv2.LINE_AA)
-
+cv2.imwrite(output_file_name, results_img)
 #Find all nodes in a Hole
-holes_nodes  = findAllHolesNodes(all_holes,all_nodes)
-
-#Save result Image
-cv2.imwrite(r'D:\result_data\test\result\dataset_n=1000d=6_test.png', results_img)
-
-node_list.append(list(flat(list(holes_nodes)[0])))
-
-#acc, recall = calAcc(node_list[0], node_list[1])
+#holes_nodes  = findAllHolesNodes(all_holes,all_nodes)
 #End of time
-time_end = time.time()
-print('It cost %f seconds' % (time_end - time_start))
-print ("DONE.")
-
+#time_end = time.time()
+#print('It cost %f seconds' % (time_end - time_start))
+#print ("DONE.")

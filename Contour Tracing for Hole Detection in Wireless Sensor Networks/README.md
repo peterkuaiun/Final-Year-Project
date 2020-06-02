@@ -1,0 +1,110 @@
+# Content
+---
+- Dataset  
+    - Ground Truth Dataset
+    - Force-Directed Dataset
+
+
+- 6.1 Node Identifier Matching
+    - Hole Detection (output image)
+    - Hole Detection (output nodes)
+    - Node Identifier Matching  
+    
+
+- 6.2 Hole Count Statistics  
+    - Count Number of Hole
+    - Calculate Standard Deviation 
+
+---
+
+
+# 6.1 Node Identifier Matching
+---
+## Hole Detection (Output image)         
+
+    Hole_detection_output_image_with_hole.py
+    
+This is a python program that performing hole detection by Contour Tracing Algorithm.  
+Input is a sensor network that include node coordinate and node connection.  
+Output is a hole-marked image after Contour Tracing Algorithm.
+
+##### Command:  
+    
+    py Hole_detection_output_image_with_hole.py [input_path] [output_path]  
+
+##### Example:
+
+    py Hole_detection_output_image_with_hole.py "data_1" "result_img.png"
+    
+
+
+## Hole Detection (Output Nodes of Holes)
+
+
+    Hole_detection_output_node_id.py
+    
+This is a python program that performing hole detection by Contour Tracing Algorithm.
+Input is a sensor network that include node coordinate and node connection.  
+Output is a text file that include all the nodes of holes in the input sensor network after Contour Tracing Algorithm.
+
+##### Command:  
+    
+    py Hole_detection_output_node_id.py [input_path] [output_path]  
+
+##### Example:
+
+    py Hole_detection_output_image_with_hole.py "n=500d=6" "result_hole.txt"
+
+## Node Identifier Matching
+
+    Node_identifier_matching.py
+    
+This python program is for calculating the Accuracy and Recall of the holes nodes between holes ground truth and the layout of force-directed algorithm.  
+Inputs are the holes nodes of ground truth file and the holes nodes of the layout of Forced-Directed Algorithm holes nodes.  
+Output is a text file include Accuracy and Recall. 
+
+##### Command:  
+    
+    py Hole_detection_output_image_with_hole.py [ground_truth_path] [Force-directed_layout_path] [output_path]  
+
+##### Example:
+
+    py Hole_detection_output_image_with_hole.py "ground_truth_hole.txt" "FD_hole.txt" "result_acc_recall.txt"  
+
+---
+
+# 6.2 Hole Count Statistics
+---
+
+## Count Number of Hole  
+
+    Count_number_hole.py
+
+This is a python program for counting the number of hole in sensor network of experiment dataset.
+Input is the output from **Hole_detection_output_node_id.py**, need a whole file includes 20 combinations in 10 Force-Directed Algorithm.  
+Output is a folder includes all hole count of 10 Force-Directed Algorithm in 20 combinations.
+
+##### Command:  
+    
+    py Count_number_hole.py [input_path] [output_path]  
+
+##### Example:
+
+    py Count_number_hole.py "Result of node id_folder" "Result of number of hole_folder"  
+    
+## Calculate Standard Deviation  
+
+    Calculate_std.py
+    
+This program is for calculating the standard deviation of hole count in sensor network of experiment dataset.  
+Input is the ouput from **Count_number_hole.py**, need a whole file include all hole count of 10 Force-Directed Algorithm in 20 combinations.
+Output is a folder includes the standard deviation, mean, maximum, minimum for the result of holes.  
+
+##### Command:  
+    
+    py Calculate_std.py [input_path] [output_path]  
+
+##### Example:
+
+    py Count_number_hole.py "Result of number of hole_folder" "Result of STD_folder"  
+    

@@ -4,9 +4,8 @@ import sys
 import os
 
 
-#dataset_txt = str(sys.argv[1])
-#fd_result_txt = str(sys.argv[2])
-#output_file_name = str(sys.argv[3])
+path = str(sys.argv[1])
+output_path = str(sys.argv[2])
 
 def readData(fname):
     num_hole = []
@@ -34,19 +33,16 @@ def standardDeviation(num_hole):
        f.write('\n')
 
 #Main Program:
-path = (r'D:\8.2. Result of Number Of Hole Matching\Sparse\Each FD number of hole\\')
 folderlist = os.listdir(path)
 for file in folderlist:
-    fd_list = os.listdir(path + file)
+    fd_list = os.listdir(path + '\\' + file)
     for fd_name in fd_list:
-        fd_result_txt = (path + file + '\\' + fd_name)
-        output_path = (r'D:\8.2. Result of Number Of Hole Matching\Sparse\Result of STD Calculation\\')
-        output_file_name = (output_path + file + '\\' + fd_name)
-        if not os.path.isdir(output_path + file):
-            os.mkdir(output_path + file)
+        fd_result_txt = (path + '\\' + file + '\\' + fd_name)
+        output_file_name = (output_path + '\\' + file + '\\' + fd_name)
+        if not os.path.isdir(output_path + '\\' + file):
+            os.mkdir(output_path + '\\' + file)
         num_hole = readData(fd_result_txt)
         standardDeviation(num_hole)
-        print('Finish ' + output_path + file)
 print('Done.')
 
 
