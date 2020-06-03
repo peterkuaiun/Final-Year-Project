@@ -47,10 +47,9 @@ Offical website: https://opencv.org/
 
 **After installing Python and OpenCV, the program can run successfully.**
 
-<br>
+---
 
 # 6.1 Node Identifier Matching
----
 ## Hole Detection (Output image)         
 
     Hole_detection_output_image_with_hole.py
