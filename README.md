@@ -148,6 +148,45 @@ Output is the image of detected sensor network and a text file that include all 
 
     py hole-detection-byCNN_FD.py
     Input the sensor network path: FD\Sparse\ FD\Uniform\
+    
+# 5.3	Performance Evaluation of Hole Detection in Sensor Network by Convolutional Neural Network 
+## Count Number of Hole
+
+    HoleNodeMatching_HoleDetectionCNN.py
+This is a Python program for counting the number of hole in sensor network of experiment dataset.
+Input is the output text file from **hole-detection-byCNN_TG.py OR hole-detection-byCNN_FD.py** that include all the nodes of holes
+Output is the Sensitivity and Specificity of Hole Detection result in the input sensor network.
+
+
+##### Command: 
+    
+    py HoleNodeMatching_HoleDetectionCNN.py
+    Input the 2 path of detected hole node in sensor network and the result output path: [input_path] [input_path]
+
+##### Example:
+
+    py HoleNodeMatching_HoleDetectionCNN.py
+    Input the 2 path of detected hole node in sensor network and the result output path: GroundTruth\Sparse\ GroundTruth\Uniform\
+
+
+## Calculate Sensitivity and Specificity of Hole Detection result
+
+    SensitivitySpecificity_HoleDetectionCNN.py
+This program is for calculating the average of Sensitivity and Specificity in each number of node and average degrees in sensor network of experiment dataset.
+Input is the output text file from **HoleNodeMatching_HoleDetectionCNN.py** that include the Sensitivity and Specificity of the sensor network.
+Output is the average of Sensitivity and Specificity in each number of node and average degrees in the input sensor network.
+
+
+##### Command:  
+    
+    py SensitivitySpecificity_HoleDetectionCNN.py
+    Input the path of performance result in sensor network and the result output path: [input_path] [input_path]
+
+##### Example:
+
+    py SensitivitySpecificity_HoleDetectionCNN.py
+    Input the path of performance result in sensor network and the result output path: GroundTruth\Sparse\ GroundTruth\Uniform\
+
 
     
     
