@@ -1,12 +1,3 @@
-# Final-Year-Project
-# Hole-Detection-in-Wireless-Sensor-Networks-A-Deep-Learning-Approach
-Hole Detection in Sensor Network by Convolutional Neural Network
-# # 
-
-# The System of Hole Detection in Sensor Network by Convolutional Neural Network
-
-# # 
-
 # Content
 - Dataset  
     - Ground Truth Dataset
