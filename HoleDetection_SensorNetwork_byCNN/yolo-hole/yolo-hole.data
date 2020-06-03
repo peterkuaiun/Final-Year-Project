@@ -1,0 +1,6 @@
+classes= 10
+train  = hole-data/yolo-hole-train.txt
+valid  = hole-data/yolo-hole-test.txt
+names = hole-data/yolo-hole.names
+backup = backup/hole/yolo-hole
+
