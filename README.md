@@ -11,6 +11,10 @@
     - Feature Transformation
     - Graph Segmentation and Feature Transformation with Specific Classification
     
+ - Hole Detection in sensor network by CNN
+    -Hole Detection in Ground truth sensor network by CNN
+    -Hole Detection in Force-Directed algorithms sensor network by CNN
+    
 - 5.3	Performance Evaluation of Hole Detection in Sensor Network by Convolutional Neural Network 
     - Count Number of Hole
     - Calculate Sensitivity and Specificity of Hole Detection result
@@ -53,9 +57,9 @@ Offical website: https://opencv.org/
 
     FeatureExtruction-GS.py
     
-This is a python program that performing Feature Extraction Methods by Graph Segmentation.  
+This is a Python program that performing Feature Extraction Methods by Graph Segmentation which is for collecting the feature of holes in sensor networks.  
 Input is a sensor network that include node coordinate and node connection.  
-Output is a hole-marked image after Contour Tracing Algorithm.
+Output is the image and label of all the Hole object in sensor network by Graph Segmentation.
 
 ##### Command:  
     
@@ -68,6 +72,83 @@ Output is a hole-marked image after Contour Tracing Algorithm.
     py FeatureExtruction-GS.py
     Input the sensor network path: n-data\Sparse\ n-data\Uniform\
     Input each sensor network type (Sparse input s; Uniform input u; Other input a): s u
+    
+## Feature Transformation       
+
+    FeatureExtruction-FT.py
+    
+This is a Python program that performing Feature Extraction Methods by Feature Transformation which is for collecting the feature of holes in sensor networks.  
+Input is a sensor network that include node coordinate and node connection.  
+Output is the image and label of all the Hole object in sensor network by Feature Transformation.
+
+##### Command:  
+    
+    py FeatureExtruction-FT.py
+    Input the sensor network path: [input_path] [input_path] ... [input_path]
+    Input each sensor network type (Sparse input s; Uniform input u; Other input a): [s] [u] [a] ...[s]
+
+##### Example:
+
+    py FeatureExtruction-FT.py
+    Input the sensor network path: n-data\Sparse\ n-data\Uniform\
+    Input each sensor network type (Sparse input s; Uniform input u; Other input a): s u
+
+## Graph Segmentation and Feature Transformation with Specific Classification     
+
+    FeatureExtruction-GS-FT-SC.py
+    
+This is a Python program that Feature Extraction Methods by Graph Segmentation and Feature Transformation with Specific Classification which is for collecting the feature of holes in sensor networks.  
+Input is a sensor network that include node coordinate and node connection.  
+Output is the image and label of all the Hole object in sensor network by Graph Segmentation and Feature Transformation with Specific Classification.
+
+##### Command:  
+    
+    py FeatureExtruction-GS-FT-SC.py
+    Input the sensor network path: [input_path] [input_path] ... [input_path]
+    Input each sensor network type (Sparse input s; Uniform input u; Other input a): [s] [u] [a] ...[s]
+
+##### Example:
+
+    py FeatureExtruction-GS-FT-SC.py
+    Input the sensor network path: n-data\Sparse\ n-data\Uniform\
+    Input each sensor network type (Sparse input s; Uniform input u; Other input a): s u
+    
+# Hole Detection in sensor network by CNN
+## Hole Detection in Ground truth sensor network by CNN
+    
+    hole-detection-byCNN_GT.py
+This is a Python program that implement Convolutional Neural Network (CNN) for the hole detection in Ground truth sensor networks
+Input is a sensor network that include node coordinate and node connection.
+Output is the image of detected sensor network and a text file that include all the nodes of holes in the input sensor network.
+
+##### Command:  
+    
+    py hole-detection-byCNN_GT.py
+    Input the sensor network path: [input_path] [input_path] ... [input_path]
+
+##### Example:
+
+    py hole-detection-byCNN_GT.py
+    Input the sensor network path: GroundTruth\Sparse\ GroundTruth\Uniform\
+    
+    
+## Hole Detection in Force-Directed algorithms sensor network by CNN
+    
+    hole-detection-byCNN_FD.py
+This is a Python program that implement Convolutional Neural Network (CNN) for the hole detection in Force-Directed algorithms sensor networks
+Input is a sensor network that include node coordinate and node connection.
+Output is the image of detected sensor network and a text file that include all the nodes of holes in the input sensor network.
+
+##### Command:  
+    
+    py hole-detection-byCNN_FD.py
+    Input the sensor network path: [input_path] [input_path] ... [input_path]
+
+##### Example:
+
+    py hole-detection-byCNN_FD.py
+    Input the sensor network path: FD\Sparse\ FD\Uniform\
+
     
     
 
