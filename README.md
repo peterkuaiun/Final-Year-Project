@@ -20,6 +20,7 @@
     我們提出了兩種用於收集孔對象特徵的方法.我們提出了兩種方法來收集孔對象的特徵。 
     之後，檢測孔的邊界並識別孔邊界上的節點。
     最後，我們評估了提出的捲積神經網絡模型在傳感器網絡中進行孔檢測的性能。
+**More detail please access the README in directory.**
 
 ---
 # Contact information
