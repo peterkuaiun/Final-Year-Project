@@ -34,8 +34,8 @@ http://eric.lostcity-studio.com/system-design/cncahnetgenerator-cncah-network-ge
 The input of the force-directed algorithm is the ground truth sensor network. We used 10 force-directed algorithms to generate our experiment dataset. The format of the files is the same as ground truth.  
 
 ### YOLOv3 Hole Detection Model
-If you want used Hole Detection in sensor network by CNN, you must download the Hole Detection Model and save it at "\HoleDetection_SensorNetwork_byCNN\yolo-hole"
 The Hole Detection Model is trained by 40 Grouth Truth sensor network and each Feature Extraction Methods.
+If you want used Hole Detection in sensor network by CNN, you must download the Hole Detection Model and save it at "\HoleDetection_SensorNetwork_byCNN\yolo-hole".
 
 https://drive.google.com/file/d/1pIkYphKDOAy7VrYXzDHoeKjm5vykillp/view?usp=sharing
 
