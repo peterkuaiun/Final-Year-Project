@@ -1,7 +1,8 @@
 # Content
 - Dataset  
     - Ground Truth Dataset
-    - Force-Directed Dataset  
+    - Force-Directed Dataset
+    - YOLOv3 Hole Detection Model
 
 - Installation requirements  
     - Library
@@ -32,11 +33,21 @@ http://eric.lostcity-studio.com/system-design/cncahnetgenerator-cncah-network-ge
 ### Force-Directed Dataset
 The input of the force-directed algorithm is the ground truth sensor network. We used 10 force-directed algorithms to generate our experiment dataset. The format of the files is the same as ground truth.  
 
+### YOLOv3 Hole Detection Model
+If you want used Hole Detection in sensor network by CNN, you must download the Hole Detection Model and save it at "\HoleDetection_SensorNetwork_byCNN\yolo-hole".
+The Hole Detection Model is trained by 40 Grouth Truth sensor network and each Feature Extraction Methods.
+https://drive.google.com/file/d/1pIkYphKDOAy7VrYXzDHoeKjm5vykillp/view?usp=sharing
+
+
+
+
 ##### You can download the dataset below:
 https://drive.google.com/file/d/1XRCJY0dodz932A2Kynlm3GJNu-cv2vdO/edit **(within Ground truth dataset)**  
 https://drive.google.com/file/d/1q_f6r7ihGPq2pcnLhQLKZl1ynAXRENwQ/edit  
 https://drive.google.com/file/d/1q1ykn7R_orQvvDplbiqQ2kXVIgJxGwd0/edit  
 https://drive.google.com/file/d/1rCqSkBhN4yjBZCltMAfFcx_XLuaTKktH/view
+
+
     
 ---
 # Installation requirements  
@@ -114,6 +125,7 @@ Output is the image and label of all the Hole object in sensor network by Graph 
     Input each sensor network type (Sparse input s; Uniform input u; Other input a): s u
     
 # Hole Detection in sensor network by CNN
+    If you want to use this program, you must download the Hole Detection Model first.
 ## Hole Detection in Ground truth sensor network by CNN
     
     hole-detection-byCNN_GT.py
