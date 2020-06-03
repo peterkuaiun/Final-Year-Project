@@ -9,6 +9,7 @@
     執行CTA和輸出結果圖像，該圖像是數字標記，高亮顯示，然後節點識別孔。
 
 **More detail please access the README in directory.**
+
 ---
 
 ## Hole Detection in Wireless Sensor Networks – A Deep Learning Approach  
