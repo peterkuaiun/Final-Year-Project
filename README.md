@@ -4,7 +4,8 @@
     - Force-Directed Dataset  
 
 - Installation requirements  
-    - Library
+    - Python
+    - OpenCV
 
 - 6.1 Node Identifier Matching
     - Hole Detection (output image)
