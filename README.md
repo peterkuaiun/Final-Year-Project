@@ -7,7 +7,7 @@
     我們提出了一種利用圖像處理技術在傳感器網絡中進行孔檢測的方法（即輪廓跟踪算法CTA）。
     我們設計整個CTA系統，包括傳感器網絡預處理，執行CTA和輸出結果圖像，該圖像是數字標記，高亮顯示，然後節點識別孔。
 
-**More detail please switch to branch **peter** and find the README in directory.**
+#### More detail please switch to branch **peter** and find the README in directory.
 
 ---
 
@@ -24,7 +24,7 @@
     之後，檢測孔的邊界並識別孔邊界上的節點。
     最後，我們評估了提出的捲積神經網絡模型在傳感器網絡中進行孔檢測的性能。  
 
-**More detail please switch to branch **ben** and find the README in directory.**
+#### More detail please switch to branch **ben** and find the README in directory.
 
 ---
 # Contact information
